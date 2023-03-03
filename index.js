@@ -150,4 +150,60 @@ const mainMenu = () => {
     });
 });
     };
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: 'Please enter first name.',
+            validate: (inoutFirstName) => {
+                if (inoutFirstName) {
+                    return true;
+                } else {
+                    console.log('Please enter first name.');
+                 }
+             },
+         },
+         {
+            type: 'input',
+            name: 'last_name',
+            messsage: 'Please enter last name.',
+            validate: (inoutLastName) => {
+                if (inoutLastName) {
+                    return true;
+                } else {
+                    console.log('Please enter last name.');
+         }
+    },
 
+},
+{
+    type: 'input',
+    name: 'role_id',
+    messsage: 'Please enter a role ID for new employee.',
+    validate: (inputRoleId) => {
+        if (inputRoleId) {
+            return true;
+        } else {
+            console.log('Please enter role ID.');
+        }
+    },
+])
+.then((response) => {
+    let query ='INSERT INTO employee SET?`;'
+
+    database.query(
+        query,
+        {
+            fist_name: response.fist_name,
+            last_name: response.last_name,
+            role_id: response.role_id,
+            manager_id: response.manager_id,
+        },
+        (err) => {
+            if (err) throw err;
+            console.log ('New employee added!');
+            mainMenu();    
+        }
+    );
+});
