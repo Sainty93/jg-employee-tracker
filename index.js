@@ -82,3 +82,48 @@ const mainMenu = () => {
             mainMenu();
         });
     };
+
+    const viewAllEmployees = () => {
+        console.log('Viewing all employees...\n');
+
+        const query = 'SELECT employee.id, employee.first_name, employee.last_name, role.title,
+        department.name AS department, role.salary, Contact(manager.fist_name, '', manager.last_name) AS manager
+        FROM employee
+        LEFT JOIN employee manager on manager.id = employee.manager_id
+        INNER JOIN ROLE on (role.id = employee.role_id)
+        INNER JOIN department on (department.id  = role.department_id)
+        ORDER BY employee.id;`;
+
+        database.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            mainMenu();
+        });
+    };
+
+    const viewAllRoles = () => {
+        console.log('Viewing all employees...\n');
+
+        const query = `SELECT role.title, role.id, role.department_id, role.salary;`;
+
+        database.query(query, (err, res) => {
+            if (err) throw err;
+            console.log(err);
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'department',
+                    choices: ['Sales', 'Engineering', 'Finance', 'Customer Service'],
+                },
+            ])
+            .then((response) => {
+                let query = `INSERT INTO department (department_name) VALUES (?)`;
+                database.query(query, (err, res) => {
+                    if (err) throw err;
+                    console.log(response.name + 'department has been added.');
+        });
+    });
+});
+    };
+
