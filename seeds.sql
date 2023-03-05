@@ -11,8 +11,8 @@ VALUES ('Sales Lead', 150000, 1),
         ('Software Enginner', 120000, 2),
         ('Senior Account', 150000, 3),
         ('Account', 100000, 3),
-        ('Customer Service Manager', 80000, 4),
-        ('Customer Service Representative', 65000, 4);
+        ('Service Manager', 80000, 4),
+        ('Service Representative', 65000, 4);
         ('Service Manager', 80000, 4),
         ('Service Representative', 65000, 4);
 
