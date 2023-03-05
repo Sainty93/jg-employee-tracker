@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const mysql =require('mysql2');
 require('dotenv').config();
+require('console.table');
 
 const database = mysql.createConnection(
     {
@@ -38,7 +39,7 @@ const mainMenu = () => {
         },
     ])
         then ((response) => {
-            switch (response.mainMenu) {
+            switch (response.main_menu) {
                 case 'View all departments':
                     viewAllDepartments();
                     break;
