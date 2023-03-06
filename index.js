@@ -28,12 +28,16 @@ const mainMenu = () => {
             message: 'What can I do for you today?',
             choices: [
                 'View all departments',
-                'Add a department',
                 'View all employees',
-                'Add a new employee',
                 'View all roles',
-                'Add a new role',
+                'Add a department',
+                'Add a new employee',
+                'Add a role',
                 'Update employee role',
+                'Update employee manager',
+                'View employee by department',
+                'View employee by manager',
+                'View total budget by department',
                 'Quit',
             ],
         },
@@ -44,25 +48,26 @@ const mainMenu = () => {
                     viewAllDepartments();
                     break;
                     
-                    case 'Add a department':
-                        addDepartment();
-                        break;
 
                     case 'View all employees':
                         viewAllEmployees();
                         break;
 
+                    case 'View all roles':
+                        viewAllRoles();
+                        break;
+                    
+                    case 'Add a department':
+                        addDepartment();
+                        break;
+
                     case 'Add a new employee':
                         addEmployee();
                         break;
-                    
-                    case 'View all roles':
-                        addRole;
-                        break;
 
-                    case 'Update employee role':
-                        updateEmployeeRole();
-                        break;
+                    case 'Add a role':
+                    addRole();
+                    break;
                     
                     case 'Update employee manager':
                         updateEmployeeManager();
@@ -80,6 +85,10 @@ const mainMenu = () => {
                         viewDepartmentBudget();
                         break;
 
+                    case 'View total budget by department':
+                        viewDepartmentBudget();
+                        break;
+
                     case 'Quit':
                         database.end();
                         break;
@@ -89,11 +98,17 @@ const mainMenu = () => {
     };
 
     const addEmployee = () => {};
+
     const addRole = () => {};
+
     const updateEmployeeRole = () => {};
+
     const updateEmployeeManager = () => {};
+
     const viewEmployeeByDepartment = () => {};
+
     const viewAllEmployeeByManager = () => {};
+    
     const viewDepartmentBudget = () => {};
 
     const viewAllDepartments = () => {
