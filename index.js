@@ -108,7 +108,7 @@ const mainMenu = () => {
     const viewEmployeeByDepartment = () => {};
 
     const viewAllEmployeeByManager = () => {};
-    
+
     const viewDepartmentBudget = () => {};
 
     const viewAllDepartments = () => {
@@ -126,13 +126,7 @@ const mainMenu = () => {
     const viewAllEmployees = () => {
         console.log('Viewing all employees...\n');
 
-       // const query = 'SELECT employee.id, employee.first_name, employee.last_name, role.title,
-       // department.name AS department, role.salary, Contact(manager.fist_name, '', manager.last_name) AS manager
-    //    FROM employee
-      //  LEFT JOIN employee manager on manager.id = employee.manager_id
-       // INNER JOIN ROLE on (role.id = employee.role_id)
-       // INNER JOIN department on (department.id  = role.department_id)
-       // ORDER BY employee.id;`
+      
 
         database.query(query, (err, res) => {
             if (err) throw err;
@@ -150,25 +144,9 @@ const mainMenu = () => {
             if (err) throw err;
             console.log(err);
 
-            inquirer.prompt([
-                {
-                    type: 'input',
-                    name: 'department',
-                    choices: ['What department would you like to add?'],
-                },
-            ])
-            .then((response) => {
-                let query = `INSERT INTO department (department_name) VALUES (?)`;
-                database.query(query, (err, res) => {
-                    if (err) throw err;
-                    console.log(response.name + 'department has been added.');
-        });
-    });
-});
-    };
-    inquirer
-    .prompt([
-        {
+           
+  
+   
             type: 'input',
             name: 'first_name',
             message: 'Please enter first name.',
@@ -179,7 +157,7 @@ const mainMenu = () => {
                     console.log('Please enter first name.');
                  }
              },
-         },
+         
          {
             type: 'input',
             name: 'last_name',
@@ -204,7 +182,7 @@ const mainMenu = () => {
             console.log('Please enter role ID.');
         }
     },
-])
+
 .then((response) => {
     let query ='INSERT INTO employee SET?`;'
 
