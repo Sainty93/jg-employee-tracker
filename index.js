@@ -11,10 +11,14 @@ const database = mysql.createConnection(
         database: process.env.DB_NAME,
     },
     console.log('Connected to company database.')
-
 );
 
-db.connect((err) => {
+console.log('');
+console.log('********************');
+console.log('WELCOME TO EMPLOYEE TRACKER');
+console.log('********************');
+
+database.connect((err) => {
     if (err) throw err;
     mainMenu();
 });
@@ -42,7 +46,7 @@ const mainMenu = () => {
             ],
         },
     ])
-        then ((response) => {
+        .then ((response) => {
             switch (response.main_menu) {
                 case 'View all departments':
                     viewAllDepartments();
@@ -97,6 +101,30 @@ const mainMenu = () => {
 
     };
 
+    const viewAllDepartments = () => {
+        console.log('');
+        console.log('Viewing all departments...\n');
+
+        const query = `SELECT department.id, department.department_name AS department FROM department;`;
+
+        database.query(query, (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            mainMenu();
+        });
+    };
+
+    const viewAllEmployee = () => {
+        console.log('');
+        console.log('Viewing all employees...\n');
+
+        const query = `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.department_name AS department, role.salary, CONTACT(manager.first_name, '', manager.last_name) AS manager
+        FROM employee
+        LEFT JOIN role emloyee manager on manager.id = emloyee.manager_id
+        INNER JOIN role ON (role.id = emloyee.role_id)
+        INNER JOIN department ON )department.id = role.department_id)
+        ORBER BY employee.id;`;
+
     const addEmployee = () => {};
 
     const addRole = () => {};
@@ -147,15 +175,7 @@ const mainMenu = () => {
            
   
    
-            type: 'input',
-            name: 'first_name',
-            message: 'Please enter first name.',
-            validate: (inoutFirstName) => {
-                if (inoutFirstName) {
-                    return true;
-                } else {
-                    console.log('Please enter first name.');
-                 }
+           
              },
          
          {
@@ -181,7 +201,7 @@ const mainMenu = () => {
         } else {
             console.log('Please enter role ID.');
         }
-    },
+    };
 
 .then((response) => {
     let query ='INSERT INTO employee SET?`;'
